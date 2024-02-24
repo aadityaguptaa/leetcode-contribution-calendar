@@ -2,7 +2,7 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const Jimp = require('jimp')
 const app = express(); 
-const port = 3001; 
+const port = process.env.PORT || 3000;
 
 
 
