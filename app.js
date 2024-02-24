@@ -5,10 +5,6 @@ const app = express();
 const port = 3001; 
 
 
-app.get('/example', (req, res) => {
-    const myString = req.query.myString;
-    res.send(`Received string: ${myString}`);
-  });
 
 app.get('/generateImage', async (req, res) => {
     try {
@@ -18,7 +14,7 @@ app.get('/generateImage', async (req, res) => {
       const page = await browser.newPage();
   
       await page.setViewport({ width: 800, height: 600 }); 
-      await page.goto(`http://localhost:3000/username/${username}`); 
+      await page.goto(`https://leetcode-contribution-calendar-react.vercel.app/username/${username}`); 
       await page.waitForSelector('.cal-div'); 
   
       const calDivRect = await page.evaluate(() => {
@@ -58,5 +54,5 @@ app.get('/generateImage', async (req, res) => {
   });
   
   app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Server is running @${port}`);
   });
