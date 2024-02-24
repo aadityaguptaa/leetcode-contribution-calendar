@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 const Jimp = require('jimp')
 const app = express(); 
 const port = process.env.PORT || 3000;
+require("dotenv").config();
 
 
 
@@ -10,7 +11,17 @@ app.get('/generateImage', async (req, res) => {
     try {
 
       const username = req.query.username;
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        args: [
+          "--disable-setuid-sandbox",
+          "--no-sandbox",
+          "--single-process",
+          "--no-zygote"
+        ],
+        executablePath: process.env.NODE_ENV === 'production' 
+        ? process.env.PUPPETEER_EXECUTABLE_PATH 
+        : puppeteer.executablePath(), 
+      });
       const page = await browser.newPage();
   
       await page.setViewport({ width: 800, height: 600 }); 
