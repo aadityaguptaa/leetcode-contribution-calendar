@@ -44,7 +44,6 @@ app.get("/svg", async (req, res) => {
 
     const svgString = calendar.renderSvgString(columns, values, until);
 
-    // Convert SVG to PNG using svg2img
     svg2img(svgString, function (error, buffer) {
       if (error) {
         console.error("Error converting SVG to PNG:", error);
@@ -52,7 +51,6 @@ app.get("/svg", async (req, res) => {
         return;
       }
 
-      // Set the appropriate headers and send the image as a response
       res.setHeader("Content-Type", "image/svg+xml");
       res.send(svgString);
     });
@@ -88,9 +86,9 @@ class GitHubCalendar {
     ];
     this.panelColors = props.panelColors || ["#EEEEEE", "#F78A23", "#F87D09", "#AC5808", "#7B3F06"];
     this.dateFormat = props.dateFormat || "YYYY-MM-DD";
-    this.monthLabelHeight = 24;
-    this.weekLabelWidth = 21;
-    this.panelSize = 13;
+    this.monthLabelHeight = 22;
+    this.weekLabelWidth = 16;
+    this.panelSize = 10;
     this.panelMargin = 3;
   }
 
