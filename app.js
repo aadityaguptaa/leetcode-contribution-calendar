@@ -92,12 +92,12 @@ class LeetcodeCalendar {
       const textSvgString = `<text
         key="${"week_key_" + i}"
         style="
-          fontSize: 9;
-          alignmentBaseline: central;
+          font-size: 0.7em;
+          alignment-baseline: central;
           fill: white;
         "
         x="${textBasePos.x - this.panelSize / 2 - 10}"
-        y="${textBasePos.y + this.panelSize / 2 + 5}"
+        y="${textBasePos.y + this.panelSize / 2 }"
         textAnchor="middle"
       >
         ${this.weekNames[i]}
