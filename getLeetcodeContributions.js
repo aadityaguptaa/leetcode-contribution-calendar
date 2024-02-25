@@ -1,18 +1,17 @@
 const axios = require("axios");
 
-async function getGitHubContributions(username) {
+async function getLeetcodeContributions(username) {
   try {
     const apiUrl = `https://leetcode-stats-api.herokuapp.com/${username}`;
 
     const response = await axios.get(apiUrl);
 
-    // Assuming the API returns JSON data
     const jsonData = response.data;
     console.log(jsonData)
     const convertedCalendar = {};
     for (const timestamp in jsonData.submissionCalendar) {
       const date = new Date(timestamp * 1000);
-      const formattedDate = date.toISOString().slice(0, 10); // Get YYYY-MM-DD
+      const formattedDate = date.toISOString().slice(0, 10);
       convertedCalendar[formattedDate] = jsonData.submissionCalendar[timestamp];
     }
     return convertedCalendar;
@@ -23,4 +22,4 @@ async function getGitHubContributions(username) {
   }
 }
 
-module.exports = { getGitHubContributions };
+module.exports = { getLeetcodeContributions };
