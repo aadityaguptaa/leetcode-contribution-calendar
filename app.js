@@ -136,7 +136,7 @@ class GitHubCalendar {
   const totalWidth = "100%";
   const paddedWidth = `calc(${totalWidth} - ${paddingLeft + paddingRight}px)`;
     var innerSvgString = "";
-    innerSvgString += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${paddedWidth} 110">`;
+    innerSvgString += `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="150">`;
 
 
     for (var i = 0; i < columns; i++) {
