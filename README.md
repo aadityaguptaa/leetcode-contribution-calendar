@@ -10,6 +10,9 @@ To add your LeetCode Contribution Calendar to your README.md, use the following 
 <img src="https://leetcode-contribution-calendar-server.vercel.app/svg?username={your_username}" width="100%">
 ```
 
+![image](https://github.com/aadityaguptaa/leetcode-contribution-calendar-server/assets/52538173/379c6ba8-5728-4513-9ad0-7ead92fdc80e)
+
+
 To obtain an image of the same, use:
 
 ```markdown
