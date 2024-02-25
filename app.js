@@ -4,6 +4,8 @@ const Jimp = require("jimp");
 const app = express();
 const port = process.env.PORT || 3001;
 const dayjs = require("dayjs");
+const { getGitHubContributions } = require('./getGitHubContributions');
+
 
 const svg2img = require("svg2img");
 
@@ -11,10 +13,10 @@ require("dotenv").config();
 
 app.get("/svg", async (req, res) => {
   try {
-    const columns = 53;
-    const values = getGitHubContributions();
-    const until = dayjs().format("YYYY-MM-DD"); // Update with your desired 'until' date
 
+    const columns = 53;
+    const values =await getGitHubContributions(req.query.username);
+    const until = dayjs().format("YYYY-MM-DD"); 
     if (!values) {
       res.status(500).send("Failed to fetch GitHub contributions.");
       return;
@@ -60,12 +62,7 @@ app.get("/svg", async (req, res) => {
   }
 });
 
-function getGitHubContributions() {
-  return {
-    "2024-02-23": 2,
-    "2024-01-26": 10,
-  };
-}
+
 
 async function generateSvgBuffer(svgString) {
   const image = await Jimp.read(Buffer.from(svgString));
@@ -172,8 +169,8 @@ class GitHubCalendar {
         key="${"week_key_" + i}"
         style="
           fontSize: 9;
-          alignmentBaseline: 'central';
-          fill: '#AAA';
+          alignmentBaseline: central;
+          fill: white;
         "
         x="${textBasePos.x - this.panelSize / 2 -10 }"
         y="${textBasePos.y + this.panelSize / 2 +5}"
