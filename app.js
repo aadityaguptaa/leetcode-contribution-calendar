@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors"); // ✅ Import CORS
 const puppeteer = require("puppeteer");
 const Jimp = require("jimp");
 const app = express();
@@ -7,8 +8,14 @@ const { getLeetcodeContributions } = require('./getLeetcodeContributions');
 const svg2img = require("svg2img");
 require("dotenv").config();
 const LeetcodeCalendar = require('./leetcodeCalendar');  
-const  constants = require('./constants.js');  
+const constants = require('./constants.js');  
 const port = constants.PORT; 
+
+// ✅ Enable CORS for all origins
+app.use(cors());
+
+// Optional: Restrict CORS to specific origin
+// app.use(cors({ origin: "http://localhost:3000" }));
 
 
 app.get("/svg", async (req, res) => {
